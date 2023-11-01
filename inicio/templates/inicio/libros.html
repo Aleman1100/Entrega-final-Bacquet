@@ -1,0 +1,17 @@
+{%extends "base.html" %}
+
+{% block h1_header %}
+¡Se creó el libro!
+{% endblock h1_header %}
+
+{% block main %}
+<form action="">
+    <input type="text" name="nombre_libro">
+    <input type="submit" name="Buscar">
+</form>
+<ul>
+    {% for libro in listado_de_libros%}
+    <li>{{libro}}</li>
+    {% endfor %}
+</ul>
+{% endblock main %}
