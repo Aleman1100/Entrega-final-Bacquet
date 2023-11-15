@@ -5,10 +5,20 @@ from inicio.models import Pelicula,Serie,Libro
 from inicio.forms import CrearPeliculaFormulario,CrearSerieFormulario,CrearLibroFormulario
 # Importar los formularios de busqueda.
 from inicio.forms import BusquedaPeliculaFormulario,BusquedaSerieFormulario,BusquedaLibroFormulario
+# Importar los formularios de actualizacion.
+from inicio.forms import ActualizarPeliculaFormulario,ActualizarSerieFormulario,ActualizarLibroFormulario
 
 def inicio(request):
     
     return render(request, 'inicio/inicio.html', {})
+
+##
+#CRUD#
+##
+
+#
+#Crear - Create
+#
 
 def crear_pelicula(request):
 
@@ -75,6 +85,10 @@ def crear_libro(request):
     formulario = CrearLibroFormulario()
     return render(request,'inicio/crear_libro.html',{'formulario':formulario})
 
+#
+#Listado - Read
+#
+
 def peliculas(request):
         
     formulario = BusquedaPeliculaFormulario(request.GET)
@@ -101,3 +115,107 @@ def libros(request):
         listado_de_libros = Libro.objects.filter(nombre_libro__icontains=libro_a_buscar)
       
     return render(request, 'inicio/libros.html',{'listado_de_libros':listado_de_libros})
+
+#
+#Eliminar - Delete
+#
+
+def eliminar_pelicula(request, pelicula_id):
+    pelicula_a_eliminar = Pelicula.objects.get(id=pelicula_id)
+    pelicula_a_eliminar.delete()
+    
+    return redirect("peliculas")
+    
+def eliminar_serie(request, serie_id):
+    serie_a_eliminar = Serie.objects.get(id=serie_id)
+    serie_a_eliminar.delete()
+    
+    return redirect("series")
+    
+def eliminar_libro(request, libro_id):
+    libro_a_eliminar = Libro.objects.get(id=libro_id)
+    libro_a_eliminar.delete()
+    
+    return redirect("libros")
+
+#
+#Actualizar - Update
+#
+
+def actualizar_pelicula(request, pelicula_id):
+    pelicula_a_actualizar = Pelicula.objects.get(id=pelicula_id)
+    
+    if request.method == "POST":
+        formulario = ActualizarPeliculaFormulario(request.POST)
+        if formulario.is_valid():
+            info_nueva = formulario.cleaned_data
+            
+            pelicula_a_actualizar.nombre_pelicula = info_nueva.get('nombre_pelicula')
+            pelicula_a_actualizar.tipo_pelicula = info_nueva.get('tipo_pelicula')
+            pelicula_a_actualizar.duracion_pelicula = info_nueva.get('duracion_pelicula')
+            
+            pelicula_a_actualizar.save()
+            return redirect('peliculas')
+        else:
+            return render(request, 'inicio/actualizar_pelicula.html', {'formulario':formulario})
+    
+    formulario = ActualizarPeliculaFormulario(initial={'nombre_pelicula': pelicula_a_actualizar.nombre_pelicula, 'tipo_pelicula': pelicula_a_actualizar.tipo_pelicula, 'duracion_pelicula': pelicula_a_actualizar.duracion_pelicula})    
+    return render(request, 'inicio/actualizar_pelicula.html', {'formulario':formulario})
+    
+def actualizar_serie(request, serie_id):
+    serie_a_actualizar = Serie.objects.get(id=serie_id)
+    
+    if request.method == "POST":
+        formulario = ActualizarSerieFormulario(request.POST)
+        if formulario.is_valid():
+            info_nueva = formulario.cleaned_data
+            
+            serie_a_actualizar.nombre_serie = info_nueva.get('nombre_serie')
+            serie_a_actualizar.tipo_serie = info_nueva.get('tipo_serie')
+            serie_a_actualizar.capitulos_serie = info_nueva.get('capitulos_serie')
+            serie_a_actualizar.duracion_capitulos = info_nueva.get('duracion_capitulos')
+            
+            serie_a_actualizar.save()
+            return redirect('series')
+        else:
+            return render(request, 'inicio/actualizar_serie.html', {'formulario':formulario})
+    
+    formulario = ActualizarSerieFormulario(initial={'nombre_serie': serie_a_actualizar.nombre_serie, 'tipo_serie': serie_a_actualizar.tipo_serie, 'capitulos_serie': serie_a_actualizar.capitulos_serie, 'duracion_capitulos': serie_a_actualizar.duracion_capitulos})    
+    return render(request, 'inicio/actualizar_serie.html', {'formulario':formulario})
+
+def actualizar_libro(request, libro_id):
+    libro_a_actualizar = Libro.objects.get(id=libro_id)
+    
+    if request.method == "POST":
+        formulario = ActualizarLibroFormulario(request.POST)
+        if formulario.is_valid():
+            info_nueva = formulario.cleaned_data
+            
+            libro_a_actualizar.nombre_libro = info_nueva.get('nombre_libro')
+            libro_a_actualizar.autor_libro = info_nueva.get('autor_libro')
+            libro_a_actualizar.paginas_libro = info_nueva.get('paginas_libro')
+            libro_a_actualizar.editorial_libro = info_nueva.get('editorial_libro')
+            
+            libro_a_actualizar.save()
+            return redirect('libros')
+        else:
+            return render(request, 'inicio/actualizar_libro.html', {'formulario':formulario})
+    
+    formulario = ActualizarLibroFormulario(initial={'nombre_libro': libro_a_actualizar.nombre_libro, 'autor_libro': libro_a_actualizar.autor_libro, 'paginas_libro': libro_a_actualizar.paginas_libro, 'editorial_libro': libro_a_actualizar.editorial_libro})    
+    return render(request, 'inicio/actualizar_libro.html', {'formulario':formulario})
+
+#
+#Detalle
+#
+
+def detalle_pelicula(request,pelicula_id):
+    pelicula = Pelicula.objects.get(id=pelicula_id)   
+    return render(request, 'inicio/detalle_pelicula.html', {'pelicula': pelicula})
+
+def detalle_serie(request,serie_id):
+    serie = Serie.objects.get(id=serie_id)   
+    return render(request, 'inicio/detalle_serie.html', {'serie': serie})
+
+def detalle_libro(request,libro_id):
+    libro = Libro.objects.get(id=libro_id)   
+    return render(request, 'inicio/detalle_libro.html', {'libro': libro})

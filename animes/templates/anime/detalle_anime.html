@@ -1,0 +1,19 @@
+{%extends "base.html" %}
+
+{% block title_head %}
+<title>Detalle Anime</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Anime {{anime.id}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Nombre : {{anime.nombre_anime}}</li>
+    <li>Capitulos : {{anime.capitulos_anime}}</li>
+    <li>Fecha Inicio : {{anime.inicio_anime}}</li>
+</ul>
+
+{% endblock main %}

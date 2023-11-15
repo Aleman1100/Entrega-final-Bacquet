@@ -1,0 +1,19 @@
+{%extends "base.html" %}
+
+{% block title_head %}
+<title>Detalle Manga</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Manga {{manga.id}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Nombre : {{manga.nombre_manga}}</li>
+    <li>Tomos : {{manga.tomos_manga}}</li>
+    <li>Género : {{manga.genero_manga}}</li>
+</ul>
+
+{% endblock main %}

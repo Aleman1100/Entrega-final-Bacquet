@@ -9,7 +9,9 @@
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        {% block title_head %}
         <title>Landing Page - Start Bootstrap Theme</title>
+        {% endblock title_head %}
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -34,15 +36,18 @@
                 <a class="navbar-brand" href={% url "inicio" %}>Inicio</a>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-primary" href={% url "peliculas" %}>Peliculas</a>
-                    <a class="btn btn-secondary" href={% url "crear_pelicula" %}>Crear Pelicula</a>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-primary" href={% url "series" %}>Series</a>
-                    <a class="btn btn-secondary" href={% url "crear_serie" %}>Crear Serie</a>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-primary" href={% url "libros" %}>Libros</a>
-                    <a class="btn btn-secondary" href={% url "crear_libro" %}>Crear Libro</a>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-primary" href={% url "mangas" %}>Mangas</a>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-primary" href={% url "animes" %}>Animes</a>
                 </div>
             </div>
         </nav>

@@ -1,0 +1,31 @@
+{%extends "base.html" %}
+
+{% block title_head %}
+<title>Mangas</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+¡Se creó el manga!
+{% endblock h1_header %}
+
+{% block main %}
+<p>
+    <a href={% url "crear_manga" %}>Crear Manga</a>
+</p>
+
+<form action="">
+    <input type="text" name="nombre_manga">
+    <input type="submit" name="Buscar">
+</form>
+
+{% if listado_de_mangas %}
+<ul>
+    {% for manga in listado_de_mangas%}
+    <li><a href={% url "detalle_manga" manga.id %}>{{manga}}</a> | <a href={% url "actualizar_manga" manga.id %}>Actualizar</a> | <a href={% url "eliminar_manga" manga.id %}>Eliminar</a> |</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron mangas</p>
+{% endif %}
+
+{% endblock main %}

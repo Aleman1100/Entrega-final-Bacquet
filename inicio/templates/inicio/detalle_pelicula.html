@@ -1,0 +1,15 @@
+{%extends "base.html" %}
+
+{% block h1_header %}
+Pelicula {{pelicula.id}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Nombre : {{pelicula.nombre_pelicula}}</li>
+    <li>Tipo : {{pelicula.tipo_pelicula}}</li>
+    <li>Duracion : {{pelicula.duracion_pelicula}} minutos</li>
+</ul>
+
+{% endblock main %}

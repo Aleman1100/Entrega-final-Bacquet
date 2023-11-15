@@ -1,0 +1,19 @@
+{%extends "base.html" %}
+
+{% block title_head %}
+<title>Eliminar Animes</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Eliminar Animes
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    Desea eliminar el anime {{anime.nombre_anime}} - {{anime.capitulos_anime}} - {{anime.inicio_anime}}?
+    <input type="submit" value="Confirmar">
+</from>
+
+{% endblock main %}

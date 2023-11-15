@@ -1,0 +1,16 @@
+{%extends "base.html" %}
+
+{% block h1_header %}
+Serie {{serie.id}}
+{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Nombre : {{serie.nombre_serie}}</li>
+    <li>Tipo : {{serie.tipo_serie}}</li>
+    <li>Capitulos : {{serie.capitulos_serie}}</li>
+    <li>Duracion por capitulo : {{serie.duracion_capitulos}} minutos</li>
+</ul>
+
+{% endblock main %}

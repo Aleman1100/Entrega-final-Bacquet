@@ -1,0 +1,19 @@
+{%extends "base.html" %}
+
+{% block title_head %}
+<title>Eliminar Mangas</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Eliminar Mangas
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    Desea eliminar el manga {{manga.nombre_manga}} - {{manga.tomos_manga}} - {{manga.genero_manga}}
+    <input type="submit" value="Confirmar">
+</from>
+
+{% endblock main %}
