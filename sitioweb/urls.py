@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('inicio.urls')),
     path('mangas/', include('mangas.urls')),
     path('animes/', include('animes.urls')),
+    path('usuarios/', include('usuarios.urls')),
     path('admin/', admin.site.urls),
 ]

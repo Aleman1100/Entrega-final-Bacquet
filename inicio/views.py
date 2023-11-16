@@ -7,6 +7,7 @@ from inicio.forms import CrearPeliculaFormulario,CrearSerieFormulario,CrearLibro
 from inicio.forms import BusquedaPeliculaFormulario,BusquedaSerieFormulario,BusquedaLibroFormulario
 # Importar los formularios de actualizacion.
 from inicio.forms import ActualizarPeliculaFormulario,ActualizarSerieFormulario,ActualizarLibroFormulario
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     
@@ -20,6 +21,7 @@ def inicio(request):
 #Crear - Create
 #
 
+@login_required
 def crear_pelicula(request):
 
     if request.method == 'POST':
@@ -41,6 +43,7 @@ def crear_pelicula(request):
     formulario = CrearPeliculaFormulario()
     return render(request,'inicio/crear_pelicula.html',{'formulario':formulario})
 
+@login_required
 def crear_serie(request):
 
     if request.method == 'POST':
@@ -63,6 +66,7 @@ def crear_serie(request):
     formulario = CrearSerieFormulario()
     return render(request,'inicio/crear_serie.html',{'formulario':formulario})
 
+@login_required
 def crear_libro(request):
 
     if request.method == 'POST':
@@ -120,18 +124,21 @@ def libros(request):
 #Eliminar - Delete
 #
 
+@login_required
 def eliminar_pelicula(request, pelicula_id):
     pelicula_a_eliminar = Pelicula.objects.get(id=pelicula_id)
     pelicula_a_eliminar.delete()
     
     return redirect("peliculas")
-    
+
+@login_required    
 def eliminar_serie(request, serie_id):
     serie_a_eliminar = Serie.objects.get(id=serie_id)
     serie_a_eliminar.delete()
     
     return redirect("series")
-    
+
+@login_required    
 def eliminar_libro(request, libro_id):
     libro_a_eliminar = Libro.objects.get(id=libro_id)
     libro_a_eliminar.delete()
@@ -142,6 +149,7 @@ def eliminar_libro(request, libro_id):
 #Actualizar - Update
 #
 
+@login_required
 def actualizar_pelicula(request, pelicula_id):
     pelicula_a_actualizar = Pelicula.objects.get(id=pelicula_id)
     
@@ -161,7 +169,8 @@ def actualizar_pelicula(request, pelicula_id):
     
     formulario = ActualizarPeliculaFormulario(initial={'nombre_pelicula': pelicula_a_actualizar.nombre_pelicula, 'tipo_pelicula': pelicula_a_actualizar.tipo_pelicula, 'duracion_pelicula': pelicula_a_actualizar.duracion_pelicula})    
     return render(request, 'inicio/actualizar_pelicula.html', {'formulario':formulario})
-    
+
+@login_required    
 def actualizar_serie(request, serie_id):
     serie_a_actualizar = Serie.objects.get(id=serie_id)
     
@@ -183,6 +192,7 @@ def actualizar_serie(request, serie_id):
     formulario = ActualizarSerieFormulario(initial={'nombre_serie': serie_a_actualizar.nombre_serie, 'tipo_serie': serie_a_actualizar.tipo_serie, 'capitulos_serie': serie_a_actualizar.capitulos_serie, 'duracion_capitulos': serie_a_actualizar.duracion_capitulos})    
     return render(request, 'inicio/actualizar_serie.html', {'formulario':formulario})
 
+@login_required
 def actualizar_libro(request, libro_id):
     libro_a_actualizar = Libro.objects.get(id=libro_id)
     

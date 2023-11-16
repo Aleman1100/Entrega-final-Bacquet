@@ -49,6 +49,15 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-primary" href={% url "animes" %}>Animes</a>
                 </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    {% if not request.user.is_authenticated %}
+                    <a class="btn btn-success" href={% url "login" %}>Iniciar Sesion</a>
+                    <a class="btn btn-secondary" href={% url "registrarse" %}>Registrarse</a>
+                    {% else %}
+                    <a class="btn btn-warning" href=''>{{request.user.username}}</a>
+                    <a class="btn btn-danger" href={% url "logout" %}>Cerrar Sesion</a>
+                    {% endif %}
+                </div>
             </div>
         </nav>
         <!-- Masthead-->
