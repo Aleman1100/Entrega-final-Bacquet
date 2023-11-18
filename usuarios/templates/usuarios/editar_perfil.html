@@ -1,5 +1,16 @@
 {%extends "base.html" %}
 
+{% block style_clear %}
+    <style>
+        #avatar-clear_id {
+            display:none;
+        }
+        label[for="avatar-clear_id"] {
+            display:none;
+        }
+    </style>
+{% endblock style_clear %}
+
 {% block title_head %}
 <title>Editar Perfil</title>
 {% endblock title_head %}
