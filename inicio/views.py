@@ -229,3 +229,7 @@ def detalle_serie(request,serie_id):
 def detalle_libro(request,libro_id):
     libro = Libro.objects.get(id=libro_id)   
     return render(request, 'inicio/detalle_libro.html', {'libro': libro})
+
+def about_me(request):
+    
+    return render(request, 'inicio/about_me.html', {})

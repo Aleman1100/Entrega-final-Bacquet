@@ -9,11 +9,12 @@
 {% endblock h1_header %}
 
 {% block main %}
+
 <p>
     <a href={% url "crear_manga" %}>Crear Manga</a>
 </p>
 
-<form action="">
+<form action={% url "mangas" %}>
     <input type="text" name="nombre_manga">
     <input type="submit" name="Buscar">
 </form>

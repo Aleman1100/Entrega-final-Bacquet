@@ -54,7 +54,11 @@
                     <a class="btn btn-success" href={% url "login" %}>Iniciar Sesion</a>
                     <a class="btn btn-secondary" href={% url "registrarse" %}>Registrarse</a>
                     {% else %}
-                    <a class="btn btn-warning" href=''>{{request.user.username}}</a>
+                        <a class="btn btn-warning" href={% url "detalle_perfil" user.id %}>
+                            {% if request.user.datosextra.avatar %}
+                                <img src="{{request.user.datosextra.avatar.url}}" alt="avatar" height='40px'>
+                            {% endif %}
+                            {{request.user.username}}    
                     <a class="btn btn-danger" href={% url "logout" %}>Cerrar Sesion</a>
                     {% endif %}
                 </div>
@@ -90,7 +94,7 @@
                     >
                         <ul class="list-inline mb-2">
                             <li class="list-inline-item">
-                                <a href="#!">About</a>
+                                <a href={% url "about_me" %}>About</a>
                             </li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item">

@@ -13,7 +13,7 @@ Registrar
 <form action={% url "registrarse" %} method="POST">
     {% csrf_token %}
     <table>
-    {{formulario_de_registro}}
+        {{formulario_de_registro}}
     </table>
     <input type="submit" value="Registrarse">
 </from>
