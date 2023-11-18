@@ -38,4 +38,4 @@ class DetalleAnime(DetailView):
 class EliminarAnime(LoginRequiredMixin, DeleteView):
     model = Anime
     template_name = 'anime/eliminar_anime.html'
-    success_url = reverse_lazy('mangas')
+    success_url = reverse_lazy('animes')
